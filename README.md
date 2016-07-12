@@ -1,1 +1,7 @@
-hello...blahblah
+
+Olivia Podber
+
+
+LICENSE:
+
+MIT License 
