@@ -1,19 +1,37 @@
-<h1>Girls Who code: Zika Virus Predictor</h1>
-<h2>Prediction </h2>
- <div id="regions_div" style="width: 900px; height: 400px;"></div>
-<h>Please choose a new prediction file to update the map : </h><input type="file" id="fileinput" />
+<header>
+	<h1>Girls Who Code: Zika Virus Predictor</h1>
+</header>
+
+<h2>Prediction Model</h2>
+<div>
+<div id="regions_div" style="width: 900px; height: 400px;"></div>
+
+<p>Ever since appearing in late October of 2014, the Zika virus has been spreading around the world at an alarming rate. Affecting around 70+ countries, today, the virus is responsible for thousands of deaths and hundreds of thousands of cases of microcephaly, a condition that causes under-development to fetuses brains. The Zika Virus, which is transmitted by mosquitos and bodily fluids, </p>
+</div>
+<h>Please choose a new prediction file (CSV format) to update the map : </h><input type="file" id="fileinput" />
+<footer>Created by Sneha and Olivia 2016</footer>
+
 <html>
 <head>
+
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, inital-scale=1">
+	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+			
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" 
+			
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="webpage.css">	
+			
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
+	
 var str1;
  google.charts.load('current', {'packages':['geomap']});
    google.charts.setOnLoadCallback(drawMap);
@@ -91,5 +109,11 @@ drawMapWithVariable();
   document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
 </script>
 </head>
-<body></body>
+<body>
+
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
 </html>
