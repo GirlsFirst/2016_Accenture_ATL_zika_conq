@@ -1,0 +1,95 @@
+<h1>Girls Who code: Zika Virus Predictor</h1>
+<h2>Prediction </h2>
+ <div id="regions_div" style="width: 900px; height: 400px;"></div>
+<h>Please choose a new prediction file to update the map : </h><input type="file" id="fileinput" />
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, inital-scale=1">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+var str1;
+ google.charts.load('current', {'packages':['geomap']});
+   google.charts.setOnLoadCallback(drawMap);
+      function drawMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'RiskFactor'],
+          ['Germany', 200],
+          ['United States', 300],
+          ['Brazil', 400],
+          ['RU', 700]
+        ]);
+
+        var options = {};
+        options['dataMode'] = 'regions';
+
+        var container = document.getElementById('regions_div');
+        var geomap = new google.visualization.GeoMap(container);
+
+        geomap.draw(data, options);
+      };
+  function drawMapWithVariable() {
+	var nArray = new Array();
+	nArray = str1.split("\n").map(function(row){return row.split(",");})
+
+	dataWithVariable = new google.visualization.DataTable();
+
+ 	// determine the number of rows and columns.
+          var numRows = nArray.length;
+          var numCols = nArray[0].length;
+
+          // in this case the first column is of type 'string'.
+          dataWithVariable.addColumn('string', nArray[0][0]);
+
+
+          // all other columns are of type 'number'.
+          for (var i = 1; i < numCols; i++){
+            dataWithVariable.addColumn('string', nArray[0][i]);
+
+		}    
+
+          // now add the rows.
+          for (var i = 1; i < numRows; i++)
+		 dataWithVariable.addRow(nArray[i]);        
+    
+        var optionsWithVariable = {};
+       optionsWithVariable['dataMode'] = 'regions';
+   optionsWithVariable['colors'] = [0x6AA121, 0xFFFF00, 0x990012 ]; //orange colors
+        var containerWithVariable = document.getElementById('regions_div');
+       var geomap1 = new google.visualization.GeoMap(containerWithVariable);
+
+        geomap1.draw(dataWithVariable , optionsWithVariable);
+      };
+  function readSingleFile(evt) {
+    //Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]; 
+
+    if (f) {
+      var r = new FileReader();
+      r.onload = function(e) { 
+	      var contents = e.target.result;
+       
+	str1 = contents.substr(0);
+	var res1 = str1.split(/,/);
+	
+drawMapWithVariable();
+//updateChart();
+      }
+      r.readAsText(f);
+	
+    } else { 
+      alert("Failed to load file");
+    }
+  }
+
+  document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
+</script>
+</head>
+<body></body>
+</html>
