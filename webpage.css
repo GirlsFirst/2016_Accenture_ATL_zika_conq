@@ -1,0 +1,24 @@
+h1{
+	text-align:center;
+	font-weight:bold;
+
+}
+
+
+header, footer {
+    padding: 2em;
+    color: black;
+	font-family: Courier New;
+	font-weight: bold;
+    clear: left;
+    text-align: center;
+	background-image:url("virus.jpg");
+}
+
+p{
+	color:black;
+}
+
+h2{
+	color:black;
+}
