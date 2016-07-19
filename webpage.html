@@ -114,6 +114,7 @@ drawMapWithVariable();
       alert("Failed to load file");
     }
   }
+  document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
   
 function myFunctionswitchtext() {
 	var mnp = document.getElementById("fileinput").files[0].name;
