@@ -90,6 +90,7 @@ var str1;
    optionsWithVariable['colors'] = [0x6AA121, 0xFFFF00, 0x990012 ]; //orange colors
         var containerWithVariable = document.getElementById('regions_div');
        var geomap1 = new google.visualization.GeoMap(containerWithVariable);
+	   colors: ['#a2fffd']
 
         geomap1.draw(dataWithVariable , optionsWithVariable);
       };
