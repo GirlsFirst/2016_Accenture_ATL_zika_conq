@@ -1,0 +1,141 @@
+<header>
+	<h1>Girls Who Code: Zika Virus Predictor</h1>
+</header>
+
+
+	<div style='float:left; width:50%'>
+		<h2>Prediction Model</h2>
+		<div class="col-sm-6"><div id="regions_div" style="width: 900px; height: 400px;"></div>
+			<h>Please choose a new prediction file (CSV format) to update the map:</h><input type="file" id="fileinput"/>
+		</div>
+	</div>
+	
+	<div style='float:left; width:50%;'>
+		<h2>About Zika</h2>
+			<div id="text" style="font-size:18px;">Ever since appearing in late October of 2014, the Zika virus has been spreading around the world at an alarming rate. Affecting around 70+ countries, today the virus is responsible for thousands of deaths and hundreds of thousands of cases of microcephaly, a condition that causes the under-development of fetus brains. The Zika Virus, which is transmitted by mosquito bites, pregnancy, and bodily fluids, originated in Brazil, but has been transmitted all over the world, primarily through traveling, and contact with people who travel. The most common symptoms of the disease are fever, rash, joint pain, red and swollen eyes, muscle pain, and headaches. Currently, there is no cure for the virus, but world health organizations are actively learning more about it and how to treat it. 
+			</div>
+		<h2>Data Analysis</h2
+			<div id="text" style="font-size:18px;">Our data shows just how far and fast the Zika virus has spread. While the first cases occurred in Brazil in late 2014, through the various types of transmission, the virus has spread over country lines and even continents. With our data, 
+			</div>
+	</div>
+
+<footer style="font-weight:bold;">Created by Sneha and Olivia 2016</footer>
+
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, inital-scale=1">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+			
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" 
+			
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="webpage.css">	
+			
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+	
+var str1;
+ google.charts.load('current', {'packages':['geomap']});
+   google.charts.setOnLoadCallback(drawMap);
+      function drawMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'RiskFactor'],
+          ['Grmany', 0],
+        ]);
+
+        var options = {};
+        options['dataMode'] = 'regions';
+
+        var container = document.getElementById('regions_div');
+        var geomap = new google.visualization.GeoMap(container);
+
+        geomap.draw(data, options);
+      };
+  function drawMapWithVariable() {
+	var nArray = new Array();
+	nArray = str1.split("\n").map(function(row){return row.split(",");})
+
+	dataWithVariable = new google.visualization.DataTable();
+
+ 	// determine the number of rows and columns.
+          var numRows = nArray.length;
+          var numCols = nArray[0].length;
+
+          // in this case the first column is of type 'string'.
+          dataWithVariable.addColumn('string', nArray[0][0]);
+
+
+          // all other columns are of type 'number'.
+          for (var i = 1; i < numCols; i++){
+            dataWithVariable.addColumn('string', nArray[0][i]);
+
+		}    
+
+          // now add the rows.
+          for (var i = 1; i < numRows; i++)
+		 dataWithVariable.addRow(nArray[i]);        
+    
+        var optionsWithVariable = {};
+       optionsWithVariable['dataMode'] = 'regions';
+   optionsWithVariable['colors'] = [0x6AA121, 0xFFFF00, 0x990012 ]; //orange colors
+        var containerWithVariable = document.getElementById('regions_div');
+       var geomap1 = new google.visualization.GeoMap(containerWithVariable);
+
+        geomap1.draw(dataWithVariable , optionsWithVariable);
+      };
+  function readSingleFile(evt) {
+    //Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]; 
+
+    if (f) {
+      var r = new FileReader();
+      r.onload = function(e) { 
+	      var contents = e.target.result;
+       
+	str1 = contents.substr(0);
+	var res1 = str1.split(/,/);
+	
+drawMapWithVariable();
+//updateChart();
+      }
+      r.readAsText(f);
+	
+    } else { 
+      alert("Failed to load file");
+    }
+  }
+
+  document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
+  
+  function myFunctionswitchtext() {
+	var mnp = document.getElementById("fileinput").files[0].name;
+	var abc = "WekaPredictedData.csv";
+	var abc1 = "WekaPredictedData.csv";
+	if (mnp.localeCompare(abc) =='0'){	
+		document.getElementById("text2").innerHTML = "The data on the map to the left is machine learning, where the machine was given information, learned (trained) from that information, and then made predictions based off what was learned. The two attributes that were taken into consideration were GDP per capita per country and literacy rate per country. We gave the computer multiple parameters, including world health ranking, GDP per capita, literacy rates, unemployment rates, percent of population below poverty line, and whether the country shares a border with an infected country. However, after receiving the data, the computer factored out the GDP per capita and literacy rates, deeming those attributes the most relevant to the data. The lower the GDP per capita and literacy rates, the higher the chance that the country would get Zika. The computer then, seeing the correlation between the statistics, predicted the countries that would most likely acquire Zika. If a country’s number is 0, represented by green, the computer predicted Zika would not become a national epidemic in that country. If a country’s number is .5, represented by yellow,  the computer predicted that country would most likely get Zika, based on their GDP per capita and literacy rate. If the country’s number is 1, represented by red, the computer shows that that country is already transmitting the disease. This data was given a 91% accuracy rating.";
+	}
+	else if (mnp.localeCompare(abc1) =='0'){	
+		document.getElementById("text2").innerHTML = "The data on the map to the left is machine learning, where the machine was given information, learned (trained) from that information, and then made predictions based off what was learned. The two attributes that were taken into consideration were GDP per capita per country and literacy rate per country. We gave the computer multiple parameters, including world health ranking, GDP per capita, literacy rates, unemployment rates, percent of population below poverty line, and whether the country shares a border with an infected country. However, after receiving the data, the computer factored out the GDP per capita and literacy rates, deeming those attributes the most relevant to the data. The lower the GDP per capita and literacy rates, the higher the chance that the country would get Zika. The computer then, seeing the correlation between the statistics, predicted the countries that would most likely acquire Zika. If a country’s number is 0, represented by green, the computer predicted Zika would not become a national epidemic in that country. If a country’s number is .5, represented by yellow,  the computer predicted that country would most likely get Zika, based on their GDP per capita and literacy rate. If the country’s number is 1, represented by red, the computer shows that that country is already transmitting the disease. This data was given a 91% accuracy rating.";
+	}
+}
+ 
+  
+</script>
+</head>
+<body>
+
+
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
